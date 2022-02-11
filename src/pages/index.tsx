@@ -11,9 +11,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main>
-        <h1>
-          GraphCMS Link Tree
-        </h1>
+        <h1>GraphCMS Link Tree</h1>
       </main>
     </div>
   )
