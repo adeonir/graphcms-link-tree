@@ -2,6 +2,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 
 import { User } from 'components/User'
+import { Iframe } from 'components/Iframe'
 import { Link } from 'components/Link'
 
 const user = {
@@ -36,6 +37,7 @@ const Home: NextPage = () => {
           {links.map((link) => (
             <Link key={link.text} {...link} />
           ))}
+          <Iframe />
         </div>
       </main>
     </div>
