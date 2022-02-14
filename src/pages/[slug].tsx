@@ -1,6 +1,7 @@
 import type { GetServerSideProps } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
+import { NextSeo } from 'next-seo'
 
 import { User, UserProps } from 'components/User'
 import { Link, LinkProps } from 'components/Link'
@@ -19,7 +20,8 @@ export type PageProps = {
 
 const Creator = ({ page }: PageProps) => {
   const { creator, blocks } = page
-  const { isFallback } = useRouter()
+  const { isFallback, query } = useRouter()
+  const { slug } = query
 
   if (isFallback) {
     return <div className="min-h-screen py-12 px-5 text-center">Loading...</div>
@@ -31,6 +33,31 @@ const Creator = ({ page }: PageProps) => {
         <title>{creator.name} | GraphCMS Link Tree</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
+      <NextSeo
+        title={`${creator.name} | GraphCMS Link Tree`}
+        description={`Social media reference landing page for ${creator.name}, developed by @adeonir and powered by GraphCMS.`}
+        openGraph={{
+          type: 'website',
+          locale: 'pt_BR',
+          url: `https://graphcms-link-tree.vercel.app/${slug}`,
+          site_name: 'GraphCMS Link Tree',
+          title: `${creator.name} | GraphCMS Link Tree`,
+          images: [
+            {
+              url: `https://graphcms-link-tree.vercel.app/og-image.png`,
+              alt: 'GraphCMS Link Tree',
+              width: 480,
+              height: 360,
+            },
+          ],
+        }}
+        twitter={{
+          handle: '@adeonir',
+          site: '@site',
+          cardType: 'summary_large_image',
+        }}
+      />
 
       <main className="mx-auto max-w-[400px] space-y-7">
         <User {...creator} />

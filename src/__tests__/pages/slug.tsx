@@ -4,10 +4,10 @@ import Creator, { PageProps } from 'pages/[slug]'
 import { LinkType } from 'components/Link'
 
 const useRouter = jest.spyOn(require('next/router'), 'useRouter')
-const isFallback = false
 
 useRouter.mockImplementation(() => ({
-  isFallback,
+  isFallback: false,
+  query: jest.fn(),
 }))
 
 jest.mock('components/User', () => ({
