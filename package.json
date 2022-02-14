@@ -5,9 +5,21 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint src --max-warnings=0",
     "migrations": "node src/migrations/create.js",
-    "codegen": "graphql-codegen --config codegen.yml"
+    "codegen": "graphql-codegen --config codegen.yml",
+    "prepare": "husky install"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{ts,tsx}": [
+      "yarn lint --fix",
+      "yarn prettier --write"
+    ]
   },
   "dependencies": {
     "graphql": "16.3.0",
@@ -19,6 +31,7 @@
   },
   "devDependencies": {
     "@graphcms/management": "1.4.0",
+    "@graphql-codegen/add": "3.1.1",
     "@graphql-codegen/cli": "2.6.1",
     "@graphql-codegen/typescript": "2.4.3",
     "@graphql-codegen/typescript-operations": "2.3.0",
@@ -34,6 +47,8 @@
     "eslint-plugin-prettier": "4.0.0",
     "eslint-plugin-react": "7.28.0",
     "eslint-plugin-react-hooks": "4.3.0",
+    "husky": "7.0.4",
+    "lint-staged": "12.3.4",
     "postcss": "8.4.6",
     "prettier": "2.5.1",
     "prettier-plugin-tailwindcss": "0.1.7",
