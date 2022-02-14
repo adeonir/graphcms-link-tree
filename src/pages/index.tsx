@@ -26,7 +26,7 @@ const Home: NextPage = () => {
   return (
     <div className="min-h-screen py-12 px-5">
       <Head>
-        <title>GraphCMS Link Three</title>
+        <title>GraphCMS Link Tree</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
