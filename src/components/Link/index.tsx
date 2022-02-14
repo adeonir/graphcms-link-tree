@@ -10,7 +10,7 @@ export enum LinkType {
 }
 
 export const Link = ({ __typename, text, url }: LinkProps) => (
-  <>
+  <li>
     {__typename === 'Link' ? (
       <a
         href={url}
@@ -28,5 +28,5 @@ export const Link = ({ __typename, text, url }: LinkProps) => (
         frameBorder="0"
       />
     )}
-  </>
+  </li>
 )

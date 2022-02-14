@@ -1,27 +1,23 @@
 import { render, screen } from '@testing-library/react'
 
-import { User } from '.'
-
-const props = {
-  avatar: {
-    url: '/avatar.png',
-  },
-  name: 'John Doe',
-  bio: 'Lorem ipsum dolor sit amet',
-}
+import { User, UserProps } from '.'
 
 describe('<User />', () => {
-  it('should render correctly', async () => {
+  it('should render correctly', () => {
+    const props: UserProps = {
+      avatar: {
+        url: '/avatar.png',
+      },
+      name: 'John Doe',
+      bio: 'Lorem ipsum dolor sit amet',
+    }
+
     render(<User {...props} />)
 
+    expect(screen.getByRole('img', { name: props.name })).toBeInTheDocument()
     expect(
-      await screen.findByRole('img', { name: props.name })
+      screen.getByRole('heading', { name: props.name })
     ).toBeInTheDocument()
-    expect(
-      await screen.findByRole('heading', { name: props.name })
-    ).toBeInTheDocument()
-    expect(
-      await screen.findByText(/Lorem ipsum dolor sit amet/i)
-    ).toBeInTheDocument()
+    expect(screen.getByText(/Lorem ipsum dolor sit amet/i)).toBeInTheDocument()
   })
 })

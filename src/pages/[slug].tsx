@@ -1,5 +1,6 @@
 import type { GetServerSideProps } from 'next'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 
 import { User, UserProps } from 'components/User'
 import { Link, LinkProps } from 'components/Link'
@@ -18,6 +19,11 @@ export type PageProps = {
 
 const Creator = ({ page }: PageProps) => {
   const { creator, blocks } = page
+  const { isFallback } = useRouter()
+
+  if (isFallback) {
+    return <div className="min-h-screen py-12 px-5 text-center">Loading...</div>
+  }
 
   return (
     <div className="min-h-screen py-12 px-5">
@@ -29,11 +35,11 @@ const Creator = ({ page }: PageProps) => {
       <main className="mx-auto max-w-[400px] space-y-7">
         <User {...creator} />
 
-        <div className="space-y-4">
+        <ul className="space-y-4">
           {blocks.map((block) => (
             <Link key={block.url} {...block} />
           ))}
-        </div>
+        </ul>
       </main>
     </div>
   )
