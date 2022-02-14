@@ -1,7 +1,12 @@
 export type LinkProps = {
-  __typename: 'Link' | 'Video'
+  __typename: LinkType
   text?: string
   url: string
+}
+
+export enum LinkType {
+  Link = 'Link',
+  Video = 'Video',
 }
 
 export const Link = ({ __typename, text, url }: LinkProps) => (
@@ -18,6 +23,7 @@ export const Link = ({ __typename, text, url }: LinkProps) => (
     ) : (
       <iframe
         src={url}
+        title="video"
         className="aspect-video w-full rounded-md bg-gray-50 shadow-video"
         frameBorder="0"
       />

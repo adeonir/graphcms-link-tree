@@ -13,7 +13,7 @@ export const User = ({ avatar, name, bio }: UserProps) => (
     <Image
       className="rounded-full"
       src={avatar?.url || '/avatar.png'}
-      alt="avatar"
+      alt={name}
       width={100}
       height={100}
     />
