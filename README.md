@@ -2,6 +2,10 @@
 
 This is an application similar to [LinkTree](https://linktr.ee/), builded with [Next.js](https://nextjs.org/) and powered by [GraphCMS](https://www.graphcms.com/).
 
+<p align="center">
+  <img src=".github/assets/mockup.png" atl="A single landing page for social media reference" />
+</p>
+
 # How to use
 
 1. Create a new GraphCMS project
