@@ -28,7 +28,7 @@ const Creator = ({ page }: PageProps) => {
   }
 
   return (
-    <div className="min-h-screen py-12 px-5">
+    <div className="flex min-h-screen flex-col items-center py-12 px-5">
       <Head>
         <title>{creator.name} | GraphCMS Link Tree</title>
         <link rel="icon" href="/favicon.ico" />
@@ -59,7 +59,7 @@ const Creator = ({ page }: PageProps) => {
         }}
       />
 
-      <main className="mx-auto max-w-[400px] space-y-7">
+      <main className="w-full max-w-[400px] flex-1 space-y-7">
         <User {...creator} />
 
         <ul className="space-y-4">
@@ -68,6 +68,20 @@ const Creator = ({ page }: PageProps) => {
           ))}
         </ul>
       </main>
+
+      <hr className="border-1 my-5 w-full max-w-xl border-gray-300" />
+
+      <footer className="flex max-w-xl flex-col items-center">
+        <p className="text-gray-600">
+          <a
+            className="text-blue-500 transition hover:text-blue-800"
+            href="https://github.com/adeonir/graphcms-link-tree"
+          >
+            Click here
+          </a>
+          {` to know more about this project!`}
+        </p>
+      </footer>
     </div>
   )
 }
