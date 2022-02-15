@@ -17,8 +17,7 @@ export type PageProps = {
   blocks: LinkProps[]
 }
 
-const Creator = (props: PageProps) => {
-  const { slug, creator, blocks } = props
+const Creator = ({ slug, creator, blocks }: PageProps) => {
   const { isFallback } = useRouter()
 
   if (isFallback) {
