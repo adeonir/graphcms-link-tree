@@ -8,5 +8,3 @@ generates:
       - 'typescript-operations'
       - add:
           content: '/* eslint-disable */'
-      - add:
-          content: '/* prettier-ignore */'

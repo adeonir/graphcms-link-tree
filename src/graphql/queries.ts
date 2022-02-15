@@ -1,5 +1,13 @@
 import { gql } from 'graphql-request'
 
+export const PAGES = gql`
+  query Pages {
+    pages {
+      slug
+    }
+  }
+`
+
 export const PAGE_BY_SLUG = gql`
   query PageBySlug($slug: String!) {
     page(where: { slug: $slug }) {

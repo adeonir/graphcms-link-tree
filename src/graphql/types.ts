@@ -1,6 +1,5 @@
 /* eslint-disable */
-/* prettier-ignore */
-export type Maybe<T> = T | null;
+export type Maybe<T> = T | null
 export type InputMaybe<T> = Maybe<T>
 export type Exact<T extends { [key: string]: unknown }> = {
   [K in keyof T]: T[K]
@@ -5260,6 +5259,13 @@ export enum _SystemDateTimeFieldVariation {
   Base = 'base',
   Combined = 'combined',
   Localization = 'localization',
+}
+
+export type PagesQueryVariables = Exact<{ [key: string]: never }>
+
+export type PagesQuery = {
+  __typename?: 'Query'
+  pages: Array<{ __typename?: 'Page'; slug: string }>
 }
 
 export type PageBySlugQueryVariables = Exact<{

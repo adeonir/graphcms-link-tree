@@ -1,4 +1,4 @@
-import type { GetServerSideProps } from 'next'
+import type { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
@@ -8,20 +8,18 @@ import { Link, LinkProps } from 'components/Link'
 
 import { client } from 'graphql/client'
 
-import { PageBySlugQuery } from 'graphql/types'
-import { PAGE_BY_SLUG } from 'graphql/queries'
+import { PageBySlugQuery, PagesQuery } from 'graphql/types'
+import { PAGES, PAGE_BY_SLUG } from 'graphql/queries'
 
 export type PageProps = {
-  page: {
-    creator: UserProps
-    blocks: LinkProps[]
-  }
+  slug: string
+  creator: UserProps
+  blocks: LinkProps[]
 }
 
-const Creator = ({ page }: PageProps) => {
-  const { creator, blocks } = page
-  const { isFallback, query } = useRouter()
-  const { slug } = query
+const Creator = (props: PageProps) => {
+  const { slug, creator, blocks } = props
+  const { isFallback } = useRouter()
 
   if (isFallback) {
     return <div className="min-h-screen py-12 px-5 text-center">Loading...</div>
@@ -88,14 +86,27 @@ const Creator = ({ page }: PageProps) => {
 
 export default Creator
 
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+export const getStaticPaths: GetStaticPaths = async () => {
+  const { pages } = await client.request<PagesQuery>(PAGES)
+
+  const paths = pages.map(({ slug }) => ({
+    params: { slug },
+  }))
+
+  return { paths, fallback: true }
+}
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { page } = await client.request<PageBySlugQuery>(PAGE_BY_SLUG, {
     slug: params?.slug,
   })
 
   return {
+    revalidate: 60 * 60,
     props: {
-      page,
+      slug: params?.slug,
+      creator: page?.creator,
+      blocks: page?.blocks,
     },
   }
 }

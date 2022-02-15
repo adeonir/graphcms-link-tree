@@ -9,7 +9,9 @@
     "test": "jest --maxWorkers=50%",
     "test:watch": "jest --maxWorkers=50% --watch",
     "migrations": "node src/migrations/create.js",
-    "codegen": "graphql-codegen --config codegen.yml",
+    "codegen:generate": "graphql-codegen --config codegen.yml",
+    "codegen:lint": "prettier --write src/graphql/types.ts",
+    "codegen": "yarn codegen:generate && yarn codegen:lint",
     "prepare": "husky install"
   },
   "husky": {
