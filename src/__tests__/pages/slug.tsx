@@ -7,7 +7,6 @@ const useRouter = jest.spyOn(require('next/router'), 'useRouter')
 
 useRouter.mockImplementation(() => ({
   isFallback: false,
-  query: jest.fn(),
 }))
 
 jest.mock('components/User', () => ({
@@ -19,23 +18,22 @@ jest.mock('components/User', () => ({
 
 describe('<Creator />', () => {
   const props: PageProps = {
-    page: {
-      creator: {
-        name: 'John Doe',
-        bio: 'Lorem ipsum dolor sit amet',
-      },
-      blocks: [
-        {
-          __typename: LinkType.Link,
-          text: 'Link',
-          url: 'https://link.com',
-        },
-        {
-          __typename: LinkType.Video,
-          url: 'https://video.com',
-        },
-      ],
+    slug: 'john-doe',
+    creator: {
+      name: 'John Doe',
+      bio: 'Lorem ipsum dolor sit amet',
     },
+    blocks: [
+      {
+        __typename: LinkType.Link,
+        text: 'Link',
+        url: 'https://link.com',
+      },
+      {
+        __typename: LinkType.Video,
+        url: 'https://video.com',
+      },
+    ],
   }
 
   it('should render correctly', () => {
